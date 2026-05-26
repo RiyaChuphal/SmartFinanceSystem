@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reports</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f0fa;
+        }
+
+        .navbar {
+            background: #a54caf;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .summary {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .chart-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            height: 350px;
+        }
+        .expense-table {
+            margin-top: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table a {
+            text-decoration: none;
+            color: #a54caf;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div>Reports</div>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="summary">
+        <p><strong>Total Income:</strong> ₹ {{ income }}</p>
+        <p><strong>Total Expense:</strong> ₹ {{ expense }}</p>
+        <p><strong>Savings:</strong> ₹ {{ savings }}</p>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-box">
+            <h3>Expense Distribution</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>Income vs Expense</h3>
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+
+    <div class="expense-table">
+
+        <h2>Expense Records</h2>
+
+        <table>
+
+            <tr>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+
+            {% for e in expense_list %}
+
+            <tr>
+
+                <td>{{ e.category }}</td>
+
+                <td>₹ {{ e.amount }}</td>
+
+                <td>
+                    <a href="/edit_expense/{{ e.id }}">
+                        Edit
+                    </a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+</div>
+
+<script id="chart-data" type="application/json">
+{
+    "categories": {{ categories | tojson }},
+    "amounts": {{ amounts | tojson }},
+    "income": {{ income }},
+    "expense": {{ expense }}
+}
+</script>
+
+<script>
+    const data = JSON.parse(document.getElementById("chart-data").textContent);
+
+    new Chart(document.getElementById('pieChart'), {
+        type: 'pie',
+        data: {
+            labels: data.categories,
+            datasets: [{ data: data.amounts }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    new Chart(document.getElementById('barChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Income', 'Expense'],
+            datasets: [{
+                label: 'Amount',
+                data: [data.income, data.expense]
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+</script>
+
+</body>
+</html>

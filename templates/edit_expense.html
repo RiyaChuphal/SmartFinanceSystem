@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Expense</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f0fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #a54caf;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Edit Expense</h2>
+
+    <form method="POST">
+
+        <input type="text"
+               name="category"
+               value="{{ expense.category }}"
+               required>
+
+        <input type="number"
+               name="amount"
+               value="{{ expense.amount }}"
+               required>
+
+        <button type="submit">
+            Update Expense
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

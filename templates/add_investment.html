@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Add Investment</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#f5f0fa;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .box{
+            background:white;
+            padding:30px;
+            width:400px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        select,input{
+            width:100%;
+            padding:12px;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            border-radius:6px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            border:none;
+            background:#a54caf;
+            color:white;
+            border-radius:6px;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Add Investment</h2>
+
+    <form method="POST">
+
+        <select name="type" required>
+
+            <option value="">Select Investment</option>
+
+            <option value="Stocks">Stocks</option>
+            <option value="Mutual Funds">Mutual Funds</option>
+            <option value="Gold">Gold</option>
+            <option value="Crypto">Crypto</option>
+            <option value="Fixed Deposit">Fixed Deposit</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="SIP">SIP</option>
+            <option value="Others">Others</option>
+
+        </select>
+
+        <input type="number"
+               name="amount"
+               placeholder="Investment Amount"
+               required>
+
+        <button type="submit">
+            Save Investment
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

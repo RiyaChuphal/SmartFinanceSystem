@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f0fa;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: #a54caf;
+            color: white;
+            padding-top: 30px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #8e3ea0;
+        }
+
+        .main {
+            margin-left: 220px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .form-card {
+            background: white;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-card h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #a54caf;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #8e3ea0;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Finance App</h2>
+
+    <a href="/dashboard">Dashboard</a>
+    <a href="/add_income">Add Income</a>
+    <a href="/add_expense">Add Expense</a>
+    <a href="/reports">Reports</a>
+    <a href="/budget">Budget</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+
+    <div class="form-card">
+
+        <h2>Add Expense</h2>
+
+        <form method="POST">
+
+            <div class="input-group">
+                <label>Expense Category</label>
+                <select name="category" required>
+
+                    <option value="">Select Category</option>
+
+                    <option value="Food">Food</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Education">Education</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Health">Health</option>
+                    <option value="Others">Others</option>
+
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Amount</label>
+                <input type="number" name="amount" placeholder="Enter amount" required>
+            </div>
+
+            <button class="btn" type="submit">Add Expense</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
